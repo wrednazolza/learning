@@ -24,3 +24,5 @@ hs_err_pid*
 # intelij
 .idea/
 
+# target
+/target/

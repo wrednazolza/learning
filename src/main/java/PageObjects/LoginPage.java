@@ -15,15 +15,30 @@ public class LoginPage extends Page{
     }
 
     public void tryToLogIn(String Login, String Haslo){
-        driver.findElement(By.name("log")).sendKeys(Login);
-        driver.findElement(By.name("pwd")).sendKeys(Haslo);
-        driver.findElement(By.name("wp-submit")).click();
+        driver.findElement(By.name("usernameOrEmail")).sendKeys(Login);
+        driver.findElement(By.xpath("//button[@type='submit']")).click();
+        driver.findElement(By.name("password")).sendKeys(Haslo);
+        driver.findElement(By.xpath("//button[@type='submit']")).click();
+
     }
 
     public DashboardPage logIn() {
-        tryToLogIn("wrednazolzaautomatyzacja","prostehaslo123");
+        tryToLogIn("wrednazolzaautomatyzacja","wrednehaslo123");
         return new DashboardPage(driver);
     }
 
+    public boolean isOpen() {
+        return driver.findElement(By.xpath("//div[@class='login__form-header']")).isDisplayed();
+    }
+
+
+    public boolean isPasswordErrorDisplayed() {
+       return driver.findElement(By.xpath("//div[@class='form-input-validation is-error']")).isDisplayed();
+    }
+
+   /*public boolean isPasswordErrorDisplayed() {
+        return driver.findElement(By.xpath("//div[text()='Oops, that\'s not the right password. Please try again!']")).isDisplayed();
+    }
+    */
 
 }
