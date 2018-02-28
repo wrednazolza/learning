@@ -21,10 +21,24 @@ public class LoginTest extends SeleniumTest {
     public void ShouldNotBePossibleToLogInWithWrongPassword() {
         LoginPage lp = new LoginPage(driver);
         lp.open();
-        lp.tryToLogIn("wrednazolzaautomatyzacja", "blednehaslo");
+        lp.tryToLogIn("wrednazolzaautomatyzacja","blednehaslo");
 
         assertTrue(lp.isOpen());
-        assertTrue(lp.isPasswordErrorDisplayed());
+        assertTrue(lp.isErrorDisplayed());
+
+       /* assertTrue(lp.isPasswordErrorDisplayed()); */
 
     }
+
+    @Test
+    public void ShouldNotBePossibleToLogInWithWrongUsername() {
+        LoginPage lp = new LoginPage(driver);
+        lp.open();
+        lp.tryToEnterUsername("blednyusername");
+
+        assertTrue(lp.isOpen());
+        assertTrue(lp.isUserErrorDisplayed());
+    }
+
+
 }

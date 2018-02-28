@@ -28,17 +28,25 @@ public class LoginPage extends Page{
     }
 
     public boolean isOpen() {
-        return driver.findElement(By.xpath("//div[@class='login__form-header']")).isDisplayed();
+        return driver.findElement(By.xpath("//div[text()='Log in to your account.']")).isDisplayed();
     }
 
-
-    public boolean isPasswordErrorDisplayed() {
+    public boolean isErrorDisplayed() {
        return driver.findElement(By.xpath("//div[@class='form-input-validation is-error']")).isDisplayed();
     }
 
-   /*public boolean isPasswordErrorDisplayed() {
-        return driver.findElement(By.xpath("//div[text()='Oops, that\'s not the right password. Please try again!']")).isDisplayed();
+/*   public boolean isPasswordErrorDisplayed() {
+        return driver.findElement(By.xpath("//span[contains(text(), 'not the right password')]")).isDisplayed();
     }
-    */
+*/
+
+     public void tryToEnterUsername(String Login) {
+       driver.findElement(By.name("usernameOrEmail")).sendKeys(Login);
+       driver.findElement(By.xpath("//button[@type='submit']")).click();
+   }
+
+    public boolean isUserErrorDisplayed() {
+        return driver.findElement(By.xpath("//span[text()='User does not exist.']")).isDisplayed();
+    }
 
 }
